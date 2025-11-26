@@ -1,0 +1,49 @@
+
+ProjectName : "Image01"
+ProjectPath: "Project01"
+InputDir: "input"
+InputImage: [ "image.ims" ]
+InputCrop: False
+Channels: 'all'
+
+ChannelNames: 'auto'
+
+OutputDir: "output"
+OutputFilePrefix: "Image01"
+
+PredictionFileName: "prediction.zarr"
+ExtractionFileName: "extraction.zarr"
+
+Compression: 'zstd'
+CompressionLevel: 5
+
+RunExtraction: True
+
+BlockShape: [48, 512, 512]
+Overlap: [6, 64, 64]
+MinSize: [1, 15, 15]
+
+
+CellCoordinates: 'world'
+VoxelDimensions: 'auto'
+OutputCSV: False
+
+TempDir: "temp"
+
+ExtractionBatchSize: 1000
+MidSlice: False
+
+MaskDilation: 1.0
+MaskErosion: 8.0
+MaskGaussianSigma: 1.0
+
+DASK:
+    cluster_mode: 'SLURM'
+
+    EXTRACTION:
+        cluster_size: 64
+        cores: 28
+        processes: 1
+        memory: '32GB'
+        walltime: '6:00:00'
+        cpu_type: 'x2695'

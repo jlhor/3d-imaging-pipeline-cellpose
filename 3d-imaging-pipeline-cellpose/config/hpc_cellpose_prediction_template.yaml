@@ -1,0 +1,67 @@
+
+
+ProjectName : "Image01"
+ProjectPath: "Project01"
+InputDir: "input"
+InputImage: "image.ims"
+InputChannels: [0,1]
+InputCrop: False
+
+OutputDir: "output"
+PredictionFileName: "segmentation.zarr"
+
+TempDir: "temp"
+
+Compression: 'zstd'
+CompressionLevel: 5
+
+RunPrediction: True
+RunOverlapRemoval: True
+
+BlockShape: [48, 512, 512]
+
+Overlap: [6, 64, 64]
+
+cull_switch: [1,1,1]
+zslice_correction: True
+
+CELLPOSE_MODEL:
+    ModelType: "library"
+    ModelDir: "models"
+    ModelName: "cyto3"
+    
+
+CELLPOSE_EVAL:
+    flow_threshold: 0.6
+    cellprob_threshold: 0.0
+    diameter: 16
+    stitch_threshold: 0.5
+    do_3D: False
+
+DASK:
+    cluster_mode: 'SLURM'
+    
+    Prediction:
+        cluster_size: 8
+        cores: 28
+        processes: 1
+        memory: '120GB'
+        walltime: '6:00:00'
+        gpu_type: 'k80'
+        
+    
+    OverlapRemoval:
+        cluster_size: 36
+        cores: 14
+        processes: 1
+        memory: '64GB'
+        walltime: '24:00:00'
+        cpu_type: 'x2695'
+        
+    Labeling:
+        cluster_size: 16
+        cores: 14
+        processes: 1
+        memory: '32GB'
+        walltime: '24:00:00'
+        cpu_type: 'x2695'
