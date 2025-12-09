@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Feb  5 15:34:12 2025
-
-@author: horj2
-"""
-
 
 import numpy as np
 from numba import jit
@@ -153,6 +147,7 @@ def calculate_overlapping_regions(origin_block, cur_coords, edge_dir, overlap, d
             oc.append([cur_coords[d,0], cur_coords[d,1]])
             
     return np.array(oc) ## bounds of the overlapping region
+
 
 
 
