@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon May 13 15:13:07 2024
-
-@author: horj2
-"""
 
 from dask.distributed import Client, LocalCluster, as_completed
 from dask_jobqueue import SLURMCluster
@@ -70,3 +65,4 @@ def create_cluster(mode, config=None):
 
     
     return cluster
+
